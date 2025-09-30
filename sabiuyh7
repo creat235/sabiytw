@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Light Glow Website</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #fdfbfb, #ebedee);
+    color: #333;
+    overflow-x: hidden;
+  }
+  header {
+    background: #ffffffcc;
+    padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px #00c3ff, 0 0 16px #00aaff;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    background: #ffffffaa;
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(6px);
+  }
+  nav a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  nav a:hover {
+    color: #00aaff;
+    text-shadow: 0 0 10px #00c3ff;
+  }
+  section {
+    padding: 80px 20px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+  }
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  section h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ffae00, 0 0 20px #ff7b00;
+    animation: glowText 2s infinite alternate;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 1s ease;
+  }
+  section.visible h1 {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  section p {
+    font-size: 18px;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease 0.2s;
+  }
+  section.visible p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 30px;
+    font-size: 18px;
+    background: #00c3ff;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 15px #00c3ff, 0 0 30px #00aaff;
+    animation: pulse 2s infinite;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease 0.4s;
+  }
+  section.visible .btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  footer {
+    background: #ffffffcc;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    margin-top: 40px;
+    color: #555;
+  }
+  /* Section backgrounds */
+  .home { background: linear-gradient(135deg, #fdfbfb, #ebedee);}
+  .about { background: linear-gradient(135deg, #d9f1ff, #fef9d7);}
+  .services { background: linear-gradient(135deg, #fbc2eb, #a6c1ee);}
+  .contact { background: linear-gradient(135deg, #ffecd2, #fcb69f);}
+  /* Animations */
+  @keyframes pulse {
+    0% { box-shadow: 0 0 10px #00c3ff, 0 0 20px #00aaff; }
+    50% { box-shadow: 0 0 25px #00c3ff, 0 0 50px #00aaff; }
+    100% { box-shadow: 0 0 10px #00c3ff, 0 0 20px #00aaff; }
+  }
+  @keyframes glowText {
+    from { text-shadow: 0 0 10px #ffae00, 0 0 20px #ff7b00; }
+    to { text-shadow: 0 0 25px #ffc400, 0 0 40px #ff9900; }
+  }
+</style>
+</head>
+<body>
+
+<header>🌞 My Animated Light Glow Website 🌞</header>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- Phase 1 -->
+<section id="home" class="home">
+  <h1>Welcome Home</h1>
+  <p>This is the home section with smooth scrolling, glowing animated buttons, and fade-in animation.</p>
+  <a href="#about" class="btn">Explore More</a>
+</section>
+
+<!-- Phase 2 -->
+<section id="about" class="about">
+  <h1>About Us</h1>
+  <p>We build fresh, light-themed, animated websites with smooth scrolling and glow effects.</p>
+  <a href="#services" class="btn">Our Services</a>
+</section>
+
+<!-- Phase 3 -->
+<section id="services" class="services">
+  <h1>Our Services</h1>
+  <p>From creative web design to animated glow UI, we give your projects a modern and lively look.</p>
+  <a href="#contact" class="btn">Contact Us</a>
+</section>
+
+<!-- Phase 4 -->
+<section id="contact" class="contact">
+  <h1>Contact Us</h1>
+  <p>We love to connect with you. Reach us anytime with your ideas and projects.</p>
+  <a href="#home" class="btn">Back to Home</a>
+</section>
+
+<footer>&copy; 2025 My Animated Light Glow Website | Designed with 💡 Bright Glow Effects</footer>
+
+<script>
+  // Fade-in & slide-up animation on scroll
+  const sections = document.querySelectorAll("section");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
